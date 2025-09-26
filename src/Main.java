@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -11,15 +12,15 @@ public class Main {
         System.out.print("What is the number of People: ");
         int numberOfPeople = input.nextInt();
 
-        double totalTip = (totalBill) * (tipPercent / 100.0);
-        totalBill = totalBill + totalTip;
-        double tipPerPerson = totalTip / numberOfPeople;
-        double totalPerPerson = totalBill / numberOfPeople;
-        System.out.println(totalTip);
-        totalTip = ((double) (int) ((totalTip * 100.0) + 0.5) / 100);
-        /*totalBill = (((int) (totalBill * 100) + 0.5) / 100);
-        tipPerPerson = (((int) (tipPerPerson * 100) + 0.5) / 100);
-        totalPerPerson = (((int) (totalPerPerson * 100) + 0.5) / 100);*/
+        int totalTip = (int) ((totalBill * 100) * (tipPercent / 100.0) + 0.5);
+        int totalBillFinal = (int) ((totalBill * 100) + totalTip + 0.5);
+        int tipPerPerson = totalTip / numberOfPeople;
+        int totalPerPerson = totalBillFinal / numberOfPeople;
+        //breaks on numbers with decimals of only cents
+        System.out.println("Total Tip Amount: " + (totalTip - totalTip % 100) / 100 + "." + totalTip % 100);
+        System.out.println("Total Bill Amount: " + (totalBillFinal - totalBillFinal % 100) / 100 + "." + totalBillFinal % 100);
+        System.out.println("Tip Per Person: " + (tipPerPerson - tipPerPerson % 100) / 100 + "." + tipPerPerson % 100);
+        System.out.println("Total Per Person: " + (totalPerPerson - totalPerPerson % 100) / 100 + "." + totalPerPerson % 100);
 
         System.out.println(" total tip: " + totalTip + " total bill cost: " + totalBill + " tip per person: " + tipPerPerson + " total bill per person: " + totalPerPerson);
         System.out.println("bill: " + totalBill + " tip: " + tipPercent + " ppl: " + numberOfPeople);
